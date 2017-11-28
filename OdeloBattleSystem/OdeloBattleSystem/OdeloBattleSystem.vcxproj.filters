@@ -13,24 +13,60 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="헤더 파일\MCTS">
+      <UniqueIdentifier>{c810c1d0-9825-44e8-aef3-fdebe0f2b735}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Utils">
+      <UniqueIdentifier>{dc6bfd0e-b911-4a56-a3b9-5d2a9ec4f455}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Game">
+      <UniqueIdentifier>{5031f2f7-f333-4750-9e55-e7396baa9a57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Random">
+      <UniqueIdentifier>{a805f7f8-4efc-4e83-94b8-43df201a8730}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="OthelloState.cpp">
+      <Filter>헤더 파일\MCTS</Filter>
+    </ClCompile>
     <ClCompile Include="OdeloBattleSystem.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>헤더 파일\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Action.cpp">
+      <Filter>헤더 파일\MCTS</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="OdeloBattleSystem.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="ofxMSAmcts.h">
+      <Filter>헤더 파일\MCTS</Filter>
     </ClInclude>
-    <ClInclude Include="Attack_1.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="OthelloState.h">
+      <Filter>헤더 파일\MCTS</Filter>
+    </ClInclude>
+    <ClInclude Include="TreeNodeT.h">
+      <Filter>헤더 파일\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="IState.h">
+      <Filter>헤더 파일\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="MSALoopTimer.h">
+      <Filter>헤더 파일\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="OdeloBattleSystem.h">
+      <Filter>헤더 파일\Game</Filter>
     </ClInclude>
     <ClInclude Include="Attack_2.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>헤더 파일\Random</Filter>
+    </ClInclude>
+    <ClInclude Include="Attack_1.h">
+      <Filter>헤더 파일\Random</Filter>
+    </ClInclude>
+    <ClInclude Include="Action.h">
+      <Filter>헤더 파일\MCTS</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -4,7 +4,7 @@
 #include <cstdio>
 #include <iostream>
 #include <windows.h>
-
+#include <vector>
 using namespace std;
 
 #pragma comment( lib, "winmm.lib" )
@@ -23,6 +23,7 @@ const int g_Directiontable[8][2] = {
 enum{ PAN, BLACK, WHITE };
 enum{ WHITEWIN, BLACKWIN, NOWIN, DROW };
 
+class Action;
 class COdeloBattleSytem
 {
 	void (*m_funcBlackAttack)( int *x, int *y );	//흑돌 함수 포인터
@@ -31,10 +32,10 @@ class COdeloBattleSytem
 	void (*m_funcWhiteAttack)( int *x, int *y );	//백돌 함수 포인터
 	void (*m_funcWhiteDefence)( int x, int y );
 
-	int		m_nOdeloType;							// 오목알 타입
+	int		m_nOdeloType;							// 오델로알 타입
 	int		m_nUserWin[2];							// 유저 승리
 	int		m_nCurrentGameCount;					// 게임 횟수			
-	int		m_nOdeloPan[g_nMax][g_nMax];			// 오목판
+	int		m_nOdeloPan[g_nMax][g_nMax];			// 오델로판판
 
 	bool	m_bActive;								// 게임 상태
 
@@ -71,8 +72,9 @@ public:
 	void Result();
 	// 게임 초기화
 	void Init();	
+	// 게임 로그 출력
+	void PrintLog();
 
-private:
 	// 판 그리기
 	void Draw();
 	// 한수 둔다.
@@ -87,8 +89,13 @@ private:
 	bool CheckStone(int x, int y, int type);
 	void ReverseStone(int x, int y, int type);
 	bool CheckTime( float *fResultTime );
+	// 놓을 수 있는 곳이 있는지 체크하는 함수
+	bool IsPutStone(const int type);
+	void GetPutPosition(std::vector<Action>& actions, const int type);
+	//void CopyPan(int out[8][8]);
 
-
+	// For AI
+	
 };
 
 static COdeloBattleSytem OdeloGame;

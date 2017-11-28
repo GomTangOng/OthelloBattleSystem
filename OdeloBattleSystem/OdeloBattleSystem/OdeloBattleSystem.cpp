@@ -1,8 +1,9 @@
 #include "OdeloBattleSystem.h"
+#include "Action.h"
 
 COdeloBattleSytem::COdeloBattleSytem()
 {
-	Init();
+	//Init();
 }
 
 //------ 함수 포인터를 셋팅	------
@@ -145,8 +146,11 @@ void COdeloBattleSytem::Init()
 		m_nCurrentTime	= timeGetTime();
 		m_bPerHardware	= false;
 	}	
-
 	Draw();
+}
+
+void COdeloBattleSytem::PrintLog()
+{
 }
 
 //--------- 경기 결과 출력---------
@@ -192,6 +196,48 @@ bool COdeloBattleSytem::CheckTime( float *fResultTime )
 	return false;
 }
 
+bool COdeloBattleSytem::IsPutStone(const int type)
+{
+	for (int i = 0; i < 8; ++i)
+	{
+		for (int j = 0; j < 8; ++j)
+		{
+			if (CheckStone(j, i, type)) return true;
+		}
+	}
+	return false;
+}
+
+void COdeloBattleSytem::GetPutPosition(std::vector<Action>& actions, const int type)
+{
+	Action a;
+
+	for (int i = 0; i < g_nMax; ++i)
+	{
+		for (int j = 0; j < g_nMax; ++j)
+		{
+			if (CheckStone(j, i, type))
+			{
+				a.m_nPosX = j;
+				a.m_nPosY = i;
+				actions.push_back(a);
+			}
+		}
+	}
+}
+
+
+//void COdeloBattleSytem::CopyPan(int out[8][8])
+//{
+//	for (int i = 0; i < 8; ++i)
+//	{
+//		for (int j = 0; j < 8; ++j)
+//		{
+//			out[i][j] = m_nOdeloPan[i][j];
+//		}
+//	}
+//}
+
 //--------- 경기 결과 출력---------
 void COdeloBattleSytem::Result()
 //---------------------------------
@@ -213,23 +259,23 @@ void COdeloBattleSytem::Draw()
 			if( m_nOdeloPan[ y ][ x ] == PAN )
 			{
 				if( x == 0 && y == 0 )
-					std::cout<< "┌";
+					std::cout<< "┌ ";
 				else if( x == 7 && y == 7 )
 					std::cout<< "┘";
 				else if( x == 7 && y == 0  )
 					std::cout<< "┐";
 				else if( x == 0	 && y == 7 )
-					std::cout<< "└";
+					std::cout<< "└ ";
 				else if( y == 0 )
-					std::cout<< "┬";
+					std::cout<< "┬ ";
 				else if( y == 7 )
-					std::cout<< "┴";
+					std::cout<< "┴ ";
 				else if( x == 0 )
-					std::cout<< "├";
+					std::cout<< "├ ";
 				else if( x == 7 )
 					std::cout<< "┤";
 				else
-					std::cout<< "┼";
+					std::cout<< "┼ ";
 			}
 			else if( m_nOdeloPan[ y ][ x ] == BLACK )
 				std::cout<< "○"; 
@@ -243,6 +289,10 @@ void COdeloBattleSytem::Draw()
 	printf("%s Defence 수행시간 : %.5f초\n", m_nOdeloType == BLACK ? "●백돌" : "○흑돌", m_fDefenceExcuteTime );
 
 	std::cout<< "○흑돌 턴수 : " << m_nBlack << "  ●백돌 턴수 : " << m_nWhite << std::endl;
+	/*if (IsPutStone(m_nOdeloType))
+		std::cout << "둘 곳 있음\n";
+	else
+		std::cout << "둘 곳 없음\n";*/
 
 }
 
@@ -392,6 +442,7 @@ bool COdeloBattleSytem::PutStone(int x, int y, int type )
 	return false;
 }
 
+
 void COdeloBattleSytem::ReverseStone(int x, int y, int type)
 {
 	int dx, dy, _dx, _dy;
@@ -497,6 +548,7 @@ void COdeloBattleSytem::ReverseStone(int x, int y, int type)
 }
 
 
+
 bool COdeloBattleSytem::CheckStone(int x, int y, int type)
 {
 	int CheckPutStone = 0;
@@ -554,6 +606,7 @@ bool COdeloBattleSytem::CheckStone(int x, int y, int type)
 		else return true;
 	}
 }
+
 
 int** COdeloBattleSytem::Get_OdeloPan()
 {

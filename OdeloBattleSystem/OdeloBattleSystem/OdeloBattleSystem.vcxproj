@@ -76,13 +76,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Action.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="OdeloBattleSystem.cpp" />
+    <ClCompile Include="OthelloState.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Action.h" />
     <ClInclude Include="Attack_1.h" />
     <ClInclude Include="Attack_2.h" />
+    <ClInclude Include="IState.h" />
+    <ClInclude Include="MSALoopTimer.h" />
     <ClInclude Include="OdeloBattleSystem.h" />
+    <ClInclude Include="ofxMSAmcts.h" />
+    <ClInclude Include="OthelloState.h" />
+    <ClInclude Include="TreeNodeT.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
