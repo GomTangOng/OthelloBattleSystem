@@ -3,9 +3,6 @@
 #include "Action.h"
 
 
-// 오델로배틀시스템이랑 따로 분리해서 만들어야 될듯....
-// 문제가 생김
-
 #define MAX_ACTIONS 60
 
 OthelloState::OthelloState(const OthelloState & state)

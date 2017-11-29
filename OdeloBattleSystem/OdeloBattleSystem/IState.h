@@ -15,7 +15,7 @@ namespace msa {
 namespace mcts {
 
 
-
+class Action;
 class State {
 
     // copy and assignment operators should perform a DEEP clone of the given state

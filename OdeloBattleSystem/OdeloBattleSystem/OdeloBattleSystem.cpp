@@ -226,6 +226,80 @@ void COdeloBattleSytem::GetPutPosition(std::vector<Action>& actions, const int t
 	}
 }
 
+int COdeloBattleSytem::PlayOut(const int x, const int y, const int type)
+{
+	if (type == BLACK)
+	{
+		if (CheckStone(x, y, type))
+		{
+			m_nOdeloPan[y][x] = BLACK;
+			++m_Count;
+			ReverseStone(x, y, type);
+			++m_nBlack;
+			switch (CheckWin(m_Count, BLACK))
+			{
+			case BLACKWIN:
+				return BLACKWIN;
+				break;
+
+			case WHITEWIN:
+				return WHITEWIN;
+				break;
+
+			case DROW:
+				//std::cout << " 무승부입니다.\n ";
+				return DROW;
+				break;
+			}
+		}
+
+		else
+		{
+			//std::cout << " 백돌이 승리하였습니다.\n ";
+			return WHITEWIN;
+		}
+
+		m_nOdeloType = WHITE;
+	}
+
+	else
+	{
+		if (CheckStone(x, y, type))
+		{
+			m_nOdeloPan[y][x] = WHITE;
+			++m_Count;
+			ReverseStone(x, y, type);
+			Draw();
+			++m_nWhite;
+			switch (CheckWin(m_Count, WHITE))
+			{
+			case BLACKWIN:
+				//std::cout << " 흑돌이 승리하였습니다.\n ";
+				return BLACKWIN;
+				break;
+
+			case WHITEWIN:
+				//std::cout << " 백돌이 승리하였습니다.\n ";
+				return WHITEWIN;
+				break;
+
+			case DROW:
+				//std::cout << " 무승부입니다.\n ";
+				return DROW;
+				break;
+			}
+		}
+
+		else
+		{
+			std::cout << " 흑돌이 승리하였습니다.\n ";
+			return true;
+		}
+		m_nOdeloType = BLACK;
+	}
+	return -1;
+}
+
 
 //void COdeloBattleSytem::CopyPan(int out[8][8])
 //{

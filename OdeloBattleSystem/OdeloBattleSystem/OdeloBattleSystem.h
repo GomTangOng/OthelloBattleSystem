@@ -95,6 +95,7 @@ public:
 	//void CopyPan(int out[8][8]);
 
 	// For AI
+	int PlayOut(const int x, const int y, const int type);
 	
 };
 
