@@ -38,20 +38,32 @@ void OthelloState::get_actions(std::vector<Action>& actions) const
 	m_othello->GetPutPosition(actions, m_nStoneType);
 }
 
-bool OthelloState::get_random_action(Action & action) 	// get random_action...?
+bool OthelloState::get_random_action(Action & action) 	
 {
+	std::vector<Action> actions;
 	if (m_othello->IsPutStone(m_nStoneType))
 	{
-		m_othello->PutStone(action.m_nPosX, action.m_nPosY, m_nStoneType);
-		m_nStoneType = (m_nStoneType == BLACK) ? WHITE : BLACK;
+		//m_othello->PutStone(action.m_nPosX, action.m_nPosY, m_nStoneType);
+		//m_nStoneType = (m_nStoneType == BLACK) ? WHITE : BLACK;
+		get_actions(actions);
+		
+		action = actions[rand() % actions.size()];
+
 		return true;
 	}	
 	return false;
 }
 
-const std::vector<float> OthelloState::evaluate() const	// evaluate ??
+const std::vector<float> OthelloState::evaluate() const		// to do coding
 {	
-	return std::vector<float>();
+	std::vector<float> rewards(2);
+
+	if (m_othello->IsPutStone(m_nStoneType))
+	{
+
+	}
+	
+	return 0;	// game still going
 }
 
 std::string OthelloState::to_string() const
